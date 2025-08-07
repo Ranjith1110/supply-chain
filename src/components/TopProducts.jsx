@@ -46,29 +46,31 @@ export default function TopProducts() {
     }, []);
 
     return (
-        <section className="w-full py-20 px-6 sm:px-10 lg:px-20 bg-white">
-            {/* Section Title */}
-            <div className="max-w-6xl mx-auto mb-12 text-center">
-                <h3
-                    className="text-[#000] text-3xl sm:text-4xl font-extrabold uppercase tracking-wide"
-                    style={{ fontFamily: "Fortuner" }}
-                >
-                    Top Products
-                </h3>
-                <div className="w-20 mt-4 border-t-4 border-[#bf272f] mx-auto"></div>
-            </div>
-
-            {/* Grid Layout */}
-            <div className="max-w-6xl mx-auto space-y-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {cards.slice(0, 2).map((card, idx) => (
-                        <FadeCard key={card.title} card={card} delay={idx * 100} />
-                    ))}
+        <section className="relative w-full min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 py-16 bg-white overflow-hidden">
+            <div className="w-full max-w-6xl mx-auto">
+                {/* Section Title */}
+                <div className="mb-12 text-center">
+                    <h3
+                        className="text-[#000] text-3xl sm:text-4xl font-extrabold uppercase tracking-wide"
+                        style={{ fontFamily: "Fortuner" }}
+                    >
+                        Top Products
+                    </h3>
+                    <div className="w-20 mt-4 border-t-4 border-[#bf272f] mx-auto"></div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {cards.slice(2).map((card, idx) => (
-                        <FadeCard key={card.title} card={card} delay={(idx + 2) * 100} />
-                    ))}
+
+                {/* Grid Layout */}
+                <div className="space-y-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {cards.slice(0, 2).map((card, idx) => (
+                            <FadeCard key={card.title} card={card} delay={idx * 100} />
+                        ))}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {cards.slice(2).map((card, idx) => (
+                            <FadeCard key={card.title} card={card} delay={(idx + 2) * 100} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

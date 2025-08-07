@@ -9,14 +9,17 @@ const ContactForm = () => {
 
   return (
     <section
-      className="relative w-full min-h-screen bg-cover bg-center bg-no-repeat py-20 px-6 sm:px-10 lg:px-20 text-[#111]"
+      className="relative w-full min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 py-20 bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/contact.png')", // 🔁 Replace with your image path
+        backgroundImage: "url('/contact.png')", // Update with your image path
       }}
     >
-      {/* Glassmorphism Form Container */}
+      {/* Optional dark overlay */}
+      <div className="absolute inset-0 bg-opacity-40 z-0" />
+
+      {/* Form Container */}
       <div
-        className="relative z-10 max-w-4xl mx-auto backdrop-blur-lg bg-white/60 border border-white/30 shadow-2xl rounded-xl p-8 sm:p-14"
+        className="relative z-10 w-full max-w-4xl backdrop-blur-lg bg-white/60 border border-white/30 shadow-2xl rounded-xl p-6 sm:p-12"
         data-aos="fade-up"
       >
         {/* Title */}
@@ -89,7 +92,7 @@ const ContactForm = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="col-span-1 sm:col-span-2 text-center mt-6">
+          <div className="col-span-1 sm:col-span-2 text-center mt-2">
             <button
               type="submit"
               className="bg-[#bf272f] hover:bg-[#9e1e26] text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300"

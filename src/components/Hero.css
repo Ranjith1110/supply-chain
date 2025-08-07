@@ -1,24 +1,19 @@
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 .marquee {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .marquee-content {
-  display: flex;
-  width: fit-content;
-  animation: marquee 25s linear infinite;
+    display: flex;
+    animation: scroll 30s linear infinite;
 }
 
-.marquee:hover .marquee-content {
-  animation-play-state: paused;
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
