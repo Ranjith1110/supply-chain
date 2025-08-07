@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const cards = [
     {
@@ -39,6 +41,10 @@ const cards = [
 ];
 
 export default function TopProducts() {
+    useEffect(() => {
+        AOS.init({ once: true, duration: 800 });
+    }, []);
+
     return (
         <section className="w-full py-20 px-6 sm:px-10 lg:px-20 bg-white">
             {/* Section Title */}
@@ -55,13 +61,13 @@ export default function TopProducts() {
             {/* Grid Layout */}
             <div className="max-w-6xl mx-auto space-y-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {cards.slice(0, 2).map((card) => (
-                        <Card key={card.title} card={card} />
+                    {cards.slice(0, 2).map((card, idx) => (
+                        <FadeCard key={card.title} card={card} delay={idx * 100} />
                     ))}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {cards.slice(2).map((card) => (
-                        <Card key={card.title} card={card} />
+                    {cards.slice(2).map((card, idx) => (
+                        <FadeCard key={card.title} card={card} delay={(idx + 2) * 100} />
                     ))}
                 </div>
             </div>
@@ -69,9 +75,15 @@ export default function TopProducts() {
     );
 }
 
-function Card({ card }) {
+function FadeCard({ card, delay }) {
     return (
-        <div className="relative rounded-2xl overflow-hidden shadow-xl group h-[300px] transition-all duration-500">
+        <div
+            className="relative rounded-2xl overflow-hidden shadow-xl group h-[300px] transition-all duration-500"
+            data-aos="fade-zoom-in"
+            data-aos-easing="ease-in-back"
+            data-aos-delay={delay}
+            data-aos-offset="0"
+        >
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <img

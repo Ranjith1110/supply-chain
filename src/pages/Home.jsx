@@ -5,7 +5,7 @@ import OurPromise from "../components/OurPromise";
 import AboutUs from "../components/AboutUs";
 import TopProducts from "../components/TopProducts";
 import ContactForm from "../components/ContactForm";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
       <AboutUs />
       <TopProducts />
       <ContactForm />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
