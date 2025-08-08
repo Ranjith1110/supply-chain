@@ -5,6 +5,7 @@ import OurPromise from "../components/OurPromise";
 import AboutUs from "../components/AboutUs";
 import TopProducts from "../components/TopProducts";
 import ContactForm from "../components/ContactForm";
+import TrustedCompany from "../components/TrustedCompany";
 // import Footer from "../components/Footer";
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
     <>
       <Navbar />
       <Hero />
+      <TrustedCompany />
       <OurPromise />
       <AboutUs />
       <TopProducts />

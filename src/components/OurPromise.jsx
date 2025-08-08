@@ -1,83 +1,173 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useState, useEffect, useRef } from 'react';
 
 const OurPromise = () => {
+    const [hoveredCard, setHoveredCard] = useState(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef(null);
+
+    // Intersection Observer for scroll animations
     useEffect(() => {
-        AOS.init({ once: true, duration: 800 });
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
     }, []);
 
     const promises = [
         {
-            icon: '/cup.svg',
+            icon: (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1H6C4.9 1 4 1.9 4 3V21C4 22.1 4.9 23 6 23H18C19.1 23 20 22.1 20 21V9H21ZM18 21H6V3H14V9H18V21Z"/>
+                </svg>
+            ),
             title: 'Only Quality',
-            color: 'from-[#bf272f] to-[#ff5b5b]',
-            description:
-                'We’ve curated the best of what’s out there. We’ve tested thousands of products and 95% didn’t make the cut. We want to make sure every product you order, you’re proud to show off.',
+            subtitle: 'Premium Standards',
+            description: "We've curated the best of what's out there. We've tested thousands of products and 95% didn't make the cut. Every product you order, you're proud to show off.",
+            stats: '95% Rejection Rate',
+            gradient: 'from-[#bf272f]/10 to-[#bf272f]/5'
         },
         {
-            icon: '/cup.svg',
+            icon: (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4V2A10,10 0 0,1 20,10H18A8,8 0 0,0 12,4M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6V18Z"/>
+                </svg>
+            ),
             title: 'Streamlined Experience',
-            color: 'from-[#00bfff] to-[#007aff]',
-            description:
-                'We’ve automated the entire buying experience. Easily find what you’re looking for, upload your design, mockup your products and checkout in seconds. It’s that simple.',
+            subtitle: 'Effortless Process',
+            description: "We've automated the entire buying experience. Find what you're looking for, upload your design, mockup your products and checkout in seconds. It's that simple.",
+            stats: 'Seconds to Checkout',
+            gradient: 'from-[#bf272f]/10 to-[#bf272f]/5'
         },
         {
-            icon: '/cup.svg',
+            icon: (
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                </svg>
+            ),
             title: 'Customer Obsessed',
-            color: 'from-[#bf272f] to-[#ff5b5b]',
-            description:
-                'Our team is always here to help. If you don’t see what you’re looking for, we’ll source it for you and make your experience stress free and fun.',
+            subtitle: 'Always Here',
+            description: "Our team is always here to help. If you don't see what you're looking for, we'll source it for you and make your experience stress free and fun.",
+            stats: '24/7 Support',
+            gradient: 'from-[#bf272f]/10 to-[#bf272f]/5'
         },
     ];
 
     return (
-        <section className="relative w-full py-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute top-[-80px] left-[-80px] w-80 h-80 opacity-10 rounded-full blur-[100px] z-0"></div>
-            <div className="absolute bottom-[-80px] right-[-80px] w-80 h-80 bg-[#cd0226] opacity-10 rounded-full blur-[100px] z-0"></div>
+        <section 
+            ref={sectionRef}
+            className="relative w-full py-20 px-4 sm:px-8 lg:px-16 overflow-hidden bg-gradient-to-br from-gray-50 to-white"
+        >
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                {/* Floating geometric shapes */}
+                <div className="absolute top-10 left-10 w-20 h-20 border-2 border-[#bf272f]/10 rounded-full animate-pulse"></div>
+                <div className="absolute top-32 right-20 w-16 h-16 bg-[#bf272f]/5 rotate-45 animate-bounce" style={{ animationDuration: '3s' }}></div>
+                <div className="absolute bottom-20 left-32 w-12 h-12 border-2 border-[#bf272f]/10 rotate-12 animate-spin" style={{ animationDuration: '8s' }}></div>
+                
+                {/* Gradient orbs */}
+                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-radial from-[#bf272f]/5 to-transparent rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-radial from-[#bf272f]/3 to-transparent rounded-full blur-3xl opacity-20"></div>
+            </div>
 
             {/* Main Content */}
-            <div className="max-w-5xl mx-auto relative z-10">
-                {/* Section Title */}
-                <div
-                    className="text-center mb-16"
-                    data-aos="fade-zoom-in"
-                    data-aos-easing="ease-in-back"
-                    data-aos-delay="300"
-                    data-aos-offset="0"
-                >
-                    <h3
-                        className="text-[#000] text-3xl sm:text-4xl font-extrabold uppercase tracking-wide"
-                        style={{ fontFamily: 'Fortuner' }}
-                    >
-                        Our Promise
-                    </h3>
-                    <div className="w-20 mx-auto h-1 bg-[#bf272f] mt-4 rounded-full transition-all duration-500 ease-in-out" />
+            <div className="max-w-6xl mx-auto relative z-10">
+                {/* Section Header */}
+                <div className={`text-center mb-20 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="relative inline-block">
+                        <h2 className="text-4xl md:text-5xl font-black text-[#000] mb-4 relative" style={{ fontFamily: 'Fortuner', letterSpacing: '2px' }}>
+                            Our Promise
+                            <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#bf272f] rounded-full animate-ping"></div>
+                        </h2>
+                        <div className="w-24 h-1 bg-gradient-to-r from-[#bf272f] to-[#bf272f]/50 mx-auto rounded-full relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#bf272f] to-[#bf272f]/50 rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+                    <p className="text-gray-600 text-lg mt-6 max-w-2xl mx-auto">
+                        Three pillars that define our commitment to excellence
+                    </p>
                 </div>
 
-                {/* Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    {promises.map((item, idx) => (
+                {/* Promise Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    {promises.map((promise, index) => (
                         <div
-                            key={idx}
-                            className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8 text-center border border-white transform transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
-                            data-aos="fade-zoom-in"
-                            data-aos-easing="ease-in-back"
-                            data-aos-delay={300 + idx * 200}
-                            data-aos-offset="0"
+                            key={index}
+                            className={`group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-700 transform cursor-pointer border border-gray-100 ${
+                                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+                            }`}
+                            style={{ 
+                                transitionDelay: `${index * 200}ms`,
+                                transform: hoveredCard === index ? 'translateY(-12px) scale(1.02)' : ''
+                            }}
+                            onMouseEnter={() => setHoveredCard(index)}
+                            onMouseLeave={() => setHoveredCard(null)}
                         >
-                            <div
-                                className={`mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br ${item.color} shadow-lg mb-6`}
-                            >
-                                <img src={item.icon} alt={item.title} className="w-8 h-8" />
+                            {/* Card Background Gradient */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${promise.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl`}></div>
+                            
+                            {/* Hover Border Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#bf272f]/20 via-transparent to-[#bf272f]/20 opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 p-[1px]">
+                                <div className="w-full h-full bg-white rounded-3xl"></div>
                             </div>
-                            <h4 className="text-xl font-bold text-[#000] mb-2">{item.title}</h4>
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                                {item.description}
-                            </p>
+
+                            {/* Content */}
+                            <div className="relative z-10">
+                                {/* Icon */}
+                                <div className="relative mb-6">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-[#bf272f] to-[#bf272f]/80 rounded-2xl flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                                        {promise.icon}
+                                    </div>
+                                    {/* Stats Badge */}
+                                    <div className="absolute -top-2 -right-2 bg-[#bf272f] text-white text-xs px-3 py-1 rounded-full font-semibold opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-500">
+                                        {promise.stats}
+                                    </div>
+                                </div>
+
+                                {/* Title & Subtitle */}
+                                <div className="mb-4">
+                                    <h3 className="text-2xl font-bold text-[#000] mb-1 group-hover:text-[#bf272f] transition-colors duration-300">
+                                        {promise.title}
+                                    </h3>
+                                    <p className="text-[#bf272f] text-sm font-semibold uppercase tracking-wider">
+                                        {promise.subtitle}
+                                    </p>
+                                </div>
+
+                                {/* Description */}
+                                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                                    {promise.description}
+                                </p>
+
+                                {/* Animated Bottom Line */}
+                                <div className="mt-6 h-1 bg-gray-100 rounded-full overflow-hidden">
+                                    <div className="h-full bg-gradient-to-r from-[#bf272f] to-[#bf272f]/60 rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700"></div>
+                                </div>
+                            </div>
+
+                            {/* Corner Accent */}
+                            <div className="absolute top-6 right-6 w-2 h-2 bg-[#bf272f] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         </div>
                     ))}
+                </div>
+
+                {/* Bottom CTA */}
+                <div className={`text-center mt-16 transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="inline-flex items-center space-x-2 text-[#bf272f] font-semibold">
+                        <span>Experience the difference</span>
+                        <svg className="w-4 h-4 animate-bounce" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </section>
