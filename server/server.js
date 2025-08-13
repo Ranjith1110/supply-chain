@@ -6,9 +6,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 
-// ✅ Allow only your frontend domain
 app.use(cors({
-    origin: process.env.FRONTEND_URL, // Example: 'http://localhost:3000' or your deployed frontend URL
+    origin: process.env.FRONTEND_URL,
     methods: ['POST'],
     credentials: true
 }));

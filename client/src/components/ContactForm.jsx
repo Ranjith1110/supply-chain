@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import contact from "/contact.jpg";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const ContactForm = () => {
     <section
     id="contact"
       className="relative w-full min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 py-20 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/contact.jpg')" }}
+      style={{ backgroundImage: `url(${contact})` }}
     >
       <Toaster position="top-center" />
       <div className="absolute inset-0 bg-opacity-40 z-0" />
