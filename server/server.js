@@ -5,7 +5,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+// ✅ Allow only your frontend domain
+app.use(cors({
+    origin: process.env.FRONTEND_URL, // Example: 'http://localhost:3000' or your deployed frontend URL
+    methods: ['POST'],
+    credentials: true
+}));
+
 app.use(express.json());
 
 const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
@@ -32,13 +39,13 @@ app.post('/send', async (req, res) => {
             replyTo: email,
             subject: 'New Contact Form Submission',
             html: `
-        <h2>Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `
+                <h2>Contact Form Submission</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>Company:</strong> ${company}</p>
+                <p><strong>Message:</strong> ${message}</p>
+            `
         };
 
         await transporter.sendMail(mailOptions);
@@ -50,4 +57,4 @@ app.post('/send', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
