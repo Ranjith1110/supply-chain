@@ -9,6 +9,7 @@ const AboutUs = () => {
 
     return (
         <section
+        id="about"
             className="relative w-full bg-cover bg-center bg-no-repeat py-20 px-6 sm:px-10 lg:px-20 text-white"
             style={{
                 backgroundImage: "url('/abouts.png')",
@@ -28,7 +29,7 @@ const AboutUs = () => {
                     {/* Title */}
                     <div className="mb-8">
                         <h3
-                            className="text-3xl sm:text-4xl font-extrabold uppercase tracking-wide"
+                            className="text-4xl md:text-5xl font-extrabold uppercase tracking-wide"
                             style={{ fontFamily: 'Fortuner', color: '#000000' }}
                         >
                             About Us
@@ -37,22 +38,20 @@ const AboutUs = () => {
                     </div>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed mb-6">
-                        At <strong className="text-[#bf272f]">Swagify</strong>, we believe that great merchandise isn't just about products — it's about connection.
-                        Our platform was built to help companies express their brand identity through premium, custom-curated swag that delights recipients and leaves a lasting impression.
+                        At <strong className="text-[#bf272f]">SupplyCHAIN, </strong>we believe great merchandise is more than just products — it’s a statement of who you are. We’re the hands-on partner that turns your brand vision into premium, custom-crafted merch that makes an impact.
                         <br /><br />
-                        Whether you're welcoming new hires, launching a campaign, or appreciating loyal clients — we ensure the experience is seamless, elevated, and uniquely you.
+                        From startups making their conference debut to global brands running high-profile campaigns, we help teams express their identity through high-quality, made-to-order items — delivered on time, every time.
                         <br /><br />
-                        From automated fulfillment to global delivery, we make it easy to showcase your brand with style and purpose.
+                        Our strength lies in our network of trusted suppliers across China, India, and Vietnam, paired with our deep understanding of event timelines, quality control, and brand storytelling. Whether it’s 50 exclusive tees for your core team or 10,000 giveaways for a flagship event, we handle the entire process — design, manufacturing, packaging, and delivery.
+                        <br /><br />
+                        With SupplyCHAIN, you get more than a supplier — you get a partner committed to making your brand unforgettable.
                     </p>
 
-                    <button className="bg-[#bf272f] hover:bg-[#a61e24] text-white font-bold py-3 px-6 rounded-full shadow-md transition duration-300">
-                        Learn More
-                    </button>
                 </div>
 
                 {/* Right: Image */}
                 <div className="w-full md:w-1/2">
-                    <div className="relative w-full h-80 sm:h-96 rounded-lg overflow-hidden shadow-xl group">
+                    <div className="relative w-full h-80 sm:h-140 rounded-lg overflow-hidden shadow-xl group">
                         <img
                             src="/about-us.jpg"
                             alt="About Us"
